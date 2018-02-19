@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        // get the button handle and set the onclick listener.
         Button button = findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,7 +54,6 @@ public class MainActivity extends AppCompatActivity {
                 NotificationCompat.Builder builder = new NotificationCompat.Builder(MainActivity.this, ANDROID_CHANNEL_ID);
                 NotificationCompat.InboxStyle inboxStyle = new NotificationCompat.InboxStyle();
 
-                // inboxStyle.addLine("4 applications got updated");
                 inboxStyle.addLine("Maps");
                 inboxStyle.addLine("Whatsapp");
                 inboxStyle.addLine("hotstar");
@@ -62,13 +62,12 @@ public class MainActivity extends AppCompatActivity {
                 builder.setStyle(inboxStyle);
 
                 builder.setSubText("4 applications got updated");
-                // builder.setContentText("Maps,Whatsapp,hotstar,amazon");
 
                 builder.setSmallIcon(R.drawable.image1);
                 builder.setContentIntent(pendingIntent);
                 builder.setAutoCancel(true);
-                // builder.setContentTitle("Updating Notification");
 
+                // create notification manager and set the notification channel and notify.
                 NotificationManager notificationManager = (NotificationManager) getSystemService(MainActivity.this.NOTIFICATION_SERVICE);
                 notificationManager.createNotificationChannel(androidChannel);
                 notificationManager.notify(102, builder.build());
